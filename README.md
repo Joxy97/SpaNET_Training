@@ -17,6 +17,7 @@ Clone GitHub repository
 ```
 > git clone git@github.com:Joxy97/SpaNET_Training.git
 ```
+
 #### Step 3.
 Install all required packages inside project directory
 ```
@@ -26,12 +27,12 @@ pip3 install -e .
 _NOTE:_ If on LXPLUS use 'pip3 install -e . --user'
 
 #### Step 3.5 (for another training data)
-
 Add your .root file into './data' and in project directory run
 ```
 python3 src/data/cms/convert_to_h5.py data/<your_data>.root --out-file data/hhh_training.h5
 python3 src/data/cms/convert_to_h5.py data/<your_data>.root --out-file data/hhh_testing.h5
 ```
+
 #### Step 4.
 Choose setting by editing 'hhh_v12.json' or 'hhh_v20.json' files in './options_files/cms' folder. Most importantly, choose number of epochs and number of gpus.
 
