@@ -15,19 +15,20 @@ _NOTE:_ Each time you open the terminal, go to 'CMSSW_12_5_2/src' and run 'cmsen
 #### Step 2.
 Clone GitHub repository  
 ```
-> git clone git@github.com:Joxy97/SpaNET_Training.git
+git clone git@github.com:Joxy97/SpaNET_Training.git  
+cd SpaNET_Training
 ```
+Download and add 'hhh_training.h5' and 'hhh_testing.h5' into './data'
 
 #### Step 3.
 Install all required packages inside project directory
 ```
-cd SpaNET_Training
 pip3 install -e .
 ```
 _NOTE:_ If on LXPLUS use 'pip3 install -e . --user'
 
-#### Step 3.5 (for another training data)
-Add your .root file into './data' and in project directory run
+#### Step 3.5 (for custom training data)
+Add your .root file into './data' and overwrite 'hhh_training.h5' and 'hhh_testing.h5' with commands
 ```
 python3 src/data/cms/convert_to_h5.py data/<your_data>.root --out-file data/hhh_training.h5
 python3 src/data/cms/convert_to_h5.py data/<your_data>.root --out-file data/hhh_testing.h5
