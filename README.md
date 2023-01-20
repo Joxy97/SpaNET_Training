@@ -3,7 +3,7 @@
 ### Instructions:
 
 ### Step 1.
-Choose or make your working folder with `mkdir <your_workspace>`, then `cd <your_workspace>` and inside...  
+Choose or make your working folder with `mkdir <your_workspace>`, then `cd <your_workspace>`, and inside...  
 **If on a local machine** skip to Step 2.  
 **If on LXPLUS** create _CMS Environment_ using `cmsrel` 
 ```
