@@ -49,7 +49,7 @@ python3 -m spanet.train -of options_files/cms/training_settings.json
 ```  
 
 ### Step 6.
-Our current output folder is [`150_epochs_test`](https://drive.google.com/drive/folders/155y3r4fgdosE2inNTyNue4bY85FNI5Rb?usp=share_link). Output log will by default be inside `spanet_output/<version_(x)>`, where x is the ordinal number of training run (check the latest folder if not sure). To evaluate the training, type command
+Our current output folder is [`150_epochs_test`](https://drive.google.com/drive/folders/155y3r4fgdosE2inNTyNue4bY85FNI5Rb?usp=sharing). Output log will by default be inside `spanet_output/<version_(x)>`, where x is the ordinal number of training run (check the latest folder if not sure). To evaluate the training, type command
 ```
 python3 -m spanet.test spanet_output/150_epochs_test -tf data/hhh_testing.h5  --gpu
 ```
