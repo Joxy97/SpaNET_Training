@@ -3,21 +3,23 @@
 ### Instructions:
 
 ### Step 1.
-Choose or make your working folder with `mkdir <your_workspace>`, then `cd <your_workspace>`, and inside...  
-**If on a local machine** skip to Step 2.  
-**If on LXPLUS** create _CMS Environment_ using `cmsrel` 
+Login to LXPLUS-GPU with command `ssh -Y <username>@lxlpus-gpu.cern.ch`, then create and activate `virtual environment` for the work.
 ```
-cmsrel CMSSW_12_5_2  
-cd CMSSW_12_5_2/src  
-cmsenv
+pip3 install virtualenv --user
+virtualenv spanet-work
+source spanet-work/bin/activate
 ```
-_NOTE:_ Each time you open the terminal on LXPLUS, go to `CMSSW_12_5_2` and run `cmsenv`  
+Install PyTorch and Jupyter Notebook
+```
+pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+pip3 install jupyterlab matplotlib scikit-hep
+```
 
 ### Step 2.
 Clone GitHub repository  
 ```
-git clone git@github.com:Joxy97/SpaNET_Training.git  
-cd SpaNET_Training-main
+git clone https://github.com/Joxy97/SpaNET_Training.git
+cd SpaNET_Training
 ```
 **For our training data**
 Download and add ['hhh_training.h5'](https://drive.google.com/file/d/19gxW4YMMTjQaqk8_h-R1VIs5WzUOwTWj/view?usp=share_link) and ['hhh_testing.h5'](https://drive.google.com/file/d/1J_MjkpgUgWeFQdlezKosKY7LD5H-rsSm/view?usp=share_link) into `./data`
@@ -33,26 +35,23 @@ python3 src/data/cms/convert_to_h5.py data/<your_data>.root --out-file data/hhh_
 Install all required packages inside project directory
 ```
 pip3 install -e .
+pip3 install tensorboard
 ```
-_NOTE:_ If on LXPLUS use 'pip3 install -e . --user'
+_NOTE:_ If on LXPLUS, you might need to use `pip3 install -e . --user`
 
 ### Step 4.
-Choose settings by editing `hhh_v12.json` or `hhh_v20.json` files in `./options_files/cms` folder. Most importantly, choose number of epochs and number of gpus.
+Choose settings by editing `training_settings.json` file in `./options_files/cms` folder. Most importantly, choose number of epochs and number of gpus.
 
 ### Step 5.
 Run the training using command
 ```
-python3 -m spanet.train -of options_files/cms/hhh_v12.json
+python3 -m spanet.train -of options_files/cms/training_settings.json
 ```  
-or
-```
-python3 -m spanet.train -of options_files/cms/hhh_v20.json
-```
 
 ### Step 6.
-Output log will by default be inside `spanet_output/<version_(x)>`, where x is the ordinal number of training run (check the latest folder if not sure). To evaluate the training, type command
+Our current output folder is `150_epochs_test`. Output log will by default be inside `spanet_output/<version_(x)>`, where x is the ordinal number of training run (check the latest folder if not sure). To evaluate the training, type command
 ```
-python3 -m spanet.test spanet_output/<version_(x)> -tf data/hhh_testing.h5
+python3 -m spanet.test spanet_output/150_epochs_test -tf data/hhh_testing.h5  --gpu
 ```
 
 ### Step 7.
