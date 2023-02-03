@@ -45,7 +45,7 @@ Choose settings by editing `training_settings.json` file in `./options_files/cms
 ### Step 5.
 Run the training using command
 ```
-python3 -m spanet.train -of options_files/cms/training_settings.json
+python3 -m spanet.train -of options_files/training_settings.json
 ```  
 
 ### Step 6.
